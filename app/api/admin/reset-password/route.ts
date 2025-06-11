@@ -7,25 +7,31 @@ export async function POST() {
   try {
     await connectDb();
 
-    const admin = await adminModel.findOne({
-      email: "brightensolution@gmail.com",
-    });
+    const email = "brightensolution@gmail.com";
+    const newPassword = "admin123";
+
+    const admin = await adminModel.findOne({ email });
+
     if (!admin) {
       return NextResponse.json({ message: "Admin not found" }, { status: 404 });
     }
 
-    const newHashedPassword = hashPassword("admin123");
-    admin.password = newHashedPassword;
+    // Hash new password using your own logic
+    const hashed = hashPassword(newPassword);
+    admin.password = hashed;
+
     await admin.save();
 
-    return NextResponse.json(
-      { message: "Password updated to 'admin123'" },
-      { status: 200 }
-    );
+    return NextResponse.json({ message: "Password updated to admin123" });
   } catch (err: any) {
     return NextResponse.json(
-      { message: err.message || "Error updating password" },
+      { message: "Error resetting password", error: err.message },
       { status: 500 }
     );
   }
+}
+
+// OPTIONAL: To call in browser temporarily
+export async function GET() {
+  return await POST();
 }
