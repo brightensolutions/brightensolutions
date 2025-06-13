@@ -86,6 +86,12 @@ export function ContactInfo() {
                     >
                       brightensolutions@gmail.com
                     </Link>
+                    <Link
+                      href="mailto:sales@brightensolutions.com"
+                      className="text-[#F66526] font-medium hover:underline"
+                    >
+                      sales@brightensolutions.com
+                    </Link>
                   </div>
                 </div>
 
