@@ -70,6 +70,7 @@ a {
   filter: brightness(0.8);
 }
 
+/* Logo Animation */
 .profile-logo {
   position: absolute;
   bottom: -50px;
@@ -82,14 +83,40 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  border: 3px solid var(--gold);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 0 4px var(--gold),
+    0 0 0 8px rgba(212, 175, 55, 0.3);
   overflow: hidden;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 0 4px var(--gold),
+      0 0 0 8px rgba(212, 175, 55, 0.3);
+  }
+  50% {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 0 4px var(--gold),
+      0 0 0 12px rgba(212, 175, 55, 0.1);
+  }
+  100% {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 0 4px var(--gold),
+      0 0 0 8px rgba(212, 175, 55, 0.3);
+  }
 }
 
 .profile-logo img {
   width: 90%;
   height: auto;
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .profile-info {
@@ -98,6 +125,7 @@ a {
   background-color: var(--black);
 }
 
+/* Name Animation */
 .profile-info h1 {
   font-family: "Playfair Display", serif;
   font-size: 28px;
@@ -105,6 +133,30 @@ a {
   margin-bottom: 5px;
   color: var(--gold);
   letter-spacing: 2px;
+  position: relative;
+  display: inline-block;
+  animation: shimmer 3s infinite;
+  background: linear-gradient(
+    to right,
+    var(--gold) 0%,
+    var(--gold-light) 30%,
+    var(--gold) 70%,
+    var(--gold) 100%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 .profile-info h2 {
@@ -113,6 +165,19 @@ a {
   color: var(--gold-light);
   margin-bottom: 25px;
   letter-spacing: 1px;
+  opacity: 0;
+  animation: fadeIn 1s forwards 0.5s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Contact Buttons */
