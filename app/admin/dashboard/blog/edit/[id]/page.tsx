@@ -1,32 +1,43 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState, useRef, useEffect, use } from "react"
-import { useRouter } from "next/navigation"
-import Image from "next/image"
-import { Save, X, Upload, Trash2, Star, StarOff, Eye, EyeOff, ArrowLeft, Loader2 } from "lucide-react"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import RichTextEditor from "../../rich-text-editor"
+import { useState, useRef, useEffect, use } from "react";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+import {
+  Save,
+  X,
+  Upload,
+  Trash2,
+  Star,
+  StarOff,
+  Eye,
+  EyeOff,
+  ArrowLeft,
+  Loader2,
+} from "lucide-react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import RichTextEditor from "../../rich-text-editor";
 
 interface BlogPostParams {
   params: Promise<{
-    id: string
-  }>
+    id: string;
+  }>;
 }
 
 export default function EditBlogPostPage({ params }: BlogPostParams) {
   // Unwrap the params Promise using React.use()
-  const resolvedParams = use(params)
-  const postId = resolvedParams.id
+  const resolvedParams = use(params);
+  const postId = resolvedParams.id;
 
-  const router = useRouter()
-  const fileInputRef = useRef<HTMLInputElement>(null)
-  const detailFileInputRef = useRef<HTMLInputElement>(null)
+  const router = useRouter();
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const detailFileInputRef = useRef<HTMLInputElement>(null);
 
   const [formData, setFormData] = useState({
     title: "",
@@ -46,87 +57,91 @@ export default function EditBlogPostPage({ params }: BlogPostParams) {
     readingTime: "5 min read",
     featured: false,
     isPublished: true,
-  })
+  });
 
-  const [coverImagePreview, setCoverImagePreview] = useState("")
-  const [detailImagePreview, setDetailImagePreview] = useState("")
-  const [loading, setLoading] = useState(false)
-  const [fetchLoading, setFetchLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-  const [categories, setCategories] = useState<string[]>([])
+  const [coverImagePreview, setCoverImagePreview] = useState("");
+  const [detailImagePreview, setDetailImagePreview] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [fetchLoading, setFetchLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [categories, setCategories] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch("/api/blog/categories")
+        const response = await fetch("/api/blog/categories");
         if (response.ok) {
-          const data = await response.json()
-          setCategories(data)
+          const data = await response.json();
+          setCategories(data);
         }
       } catch (error) {
-        console.error("Error fetching categories:", error)
+        console.error("Error fetching categories:", error);
       }
-    }
+    };
 
-    fetchCategories()
-  }, [])
+    fetchCategories();
+  }, []);
 
   useEffect(() => {
     const fetchBlogPost = async () => {
       try {
-        setFetchLoading(true)
+        setFetchLoading(true);
         // Use the unwrapped postId instead of params.id
-        const response = await fetch(`/api/admin/blog/${postId}`)
+        const response = await fetch(`/api/admin/blog/${postId}`);
 
         if (!response.ok) {
-          throw new Error("Failed to fetch blog post")
+          throw new Error("Failed to fetch blog post");
         }
 
-        const post = await response.json()
+        const post = await response.json();
 
         // Format tags as comma-separated string
-        const tagsString = post.tags ? post.tags.join(", ") : ""
+        const tagsString = post.tags ? post.tags.join(", ") : "";
 
         setFormData({
           ...post,
           tags: tagsString,
-        })
+        });
 
         if (post.coverImage) {
-          setCoverImagePreview(post.coverImage)
+          setCoverImagePreview(post.coverImage);
         }
 
         if (post.detailImage) {
-          setDetailImagePreview(post.detailImage)
+          setDetailImagePreview(post.detailImage);
         }
       } catch (err: any) {
-        console.error("Error fetching blog post:", err)
-        setError(err.message || "Failed to load blog post")
+        console.error("Error fetching blog post:", err);
+        setError(err.message || "Failed to load blog post");
       } finally {
-        setFetchLoading(false)
+        setFetchLoading(false);
       }
-    }
+    };
 
-    fetchBlogPost()
-  }, [postId]) // Use postId instead of params.id
+    fetchBlogPost();
+  }, [postId]); // Use postId instead of params.id
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    const { name, value } = e.target;
 
     if (name.includes(".")) {
-      const [parent, child] = name.split(".")
+      const [parent, child] = name.split(".");
       setFormData((prev) => ({
         ...prev,
         [parent]: {
           ...prev[parent as keyof typeof prev],
           [child]: value,
         },
-      }))
+      }));
     } else {
       setFormData((prev) => ({
         ...prev,
         [name]: value,
-      }))
+      }));
     }
 
     // Auto-generate slug from title
@@ -134,60 +149,62 @@ export default function EditBlogPostPage({ params }: BlogPostParams) {
       const slug = value
         .toLowerCase()
         .replace(/[^\w\s]/gi, "")
-        .replace(/\s+/g, "-")
+        .replace(/\s+/g, "-");
 
       setFormData((prev) => ({
         ...prev,
         slug,
-      }))
+      }));
     }
-  }
+  };
 
   const handleContentChange = (content: string) => {
     setFormData((prev) => ({
       ...prev,
       content,
-    }))
-  }
+    }));
+  };
 
   const handleToggleFeatured = () => {
     setFormData((prev) => ({
       ...prev,
       featured: !prev.featured,
-    }))
-  }
+    }));
+  };
 
   const handleTogglePublished = () => {
     setFormData((prev) => ({
       ...prev,
       isPublished: !prev.isPublished,
-    }))
-  }
+    }));
+  };
 
-  const handleCoverImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (!file) return
+  const handleCoverImageChange = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
 
     // Preview the image
-    const reader = new FileReader()
+    const reader = new FileReader();
     reader.onload = () => {
-      setCoverImagePreview(reader.result as string)
-    }
-    reader.readAsDataURL(file)
+      setCoverImagePreview(reader.result as string);
+    };
+    reader.readAsDataURL(file);
 
     // Upload the image
     try {
-      const formData = new FormData()
-      formData.append("file", file)
-      formData.append("folder", "brightensolution/blog/covers")
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("folder", "brightensolution/blog/covers");
 
-      const response = await fetch("/api/blog /upload", {
+      const response = await fetch("/api/blog/upload", {
         method: "POST",
         body: formData,
-      })
+      });
 
       if (!response.ok) {
-        throw new Error("Failed to upload image")
+        throw new Error("Failed to upload image");
       }
 
       const data = await response.json();
@@ -195,87 +212,88 @@ export default function EditBlogPostPage({ params }: BlogPostParams) {
       setFormData((prev) => ({
         ...prev,
         coverImage: data.url,
-      }))
+      }));
     } catch (error) {
-      console.error("Error uploading image:", error)
-      setError("Failed to upload cover image")
+      console.error("Error uploading image:", error);
+      setError("Failed to upload cover image");
     }
-  }
+  };
 
-  const handleDetailImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (!file) return
+  const handleDetailImageChange = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
 
     // Preview the image
-    const reader = new FileReader()
+    const reader = new FileReader();
     reader.onload = () => {
-      setDetailImagePreview(reader.result as string)
-    }
-    reader.readAsDataURL(file)
+      setDetailImagePreview(reader.result as string);
+    };
+    reader.readAsDataURL(file);
 
     // Upload the image
     try {
-      const formData = new FormData()
-      formData.append("file", file)
-      formData.append("folder", "brightensolution/blog/details")
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("folder", "brightensolution/blog/details");
 
       const response = await fetch("/api/admin/upload", {
         method: "POST",
         body: formData,
-      })
+      });
 
       if (!response.ok) {
-        throw new Error("Failed to upload image")
+        throw new Error("Failed to upload image");
       }
 
-      const data = await response.json()
+      const data = await response.json();
       setFormData((prev) => ({
         ...prev,
         detailImage: data.url,
-      }))
+      }));
     } catch (error) {
-      console.error("Error uploading image:", error)
-      setError("Failed to upload detail image")
+      console.error("Error uploading image:", error);
+      setError("Failed to upload detail image");
     }
-  }
+  };
 
   const handleRemoveCoverImage = () => {
-    setCoverImagePreview("")
+    setCoverImagePreview("");
     setFormData((prev) => ({
       ...prev,
       coverImage: "",
-    }))
+    }));
     if (fileInputRef.current) {
-      fileInputRef.current.value = ""
+      fileInputRef.current.value = "";
     }
-  }
+  };
 
   const handleRemoveDetailImage = () => {
-    setDetailImagePreview("")
+    setDetailImagePreview("");
     setFormData((prev) => ({
       ...prev,
       detailImage: "",
-    }))
+    }));
     if (detailFileInputRef.current) {
-      detailFileInputRef.current.value = ""
+      detailFileInputRef.current.value = "";
     }
-  }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
 
     // Validate form
-    
 
     // Process tags
     const processedTags = formData.tags
       .split(",")
       .map((tag) => tag.trim())
-      .filter((tag) => tag)
+      .filter((tag) => tag);
 
     try {
-      setLoading(true)
-      setError(null)
+      setLoading(true);
+      setError(null);
 
       // Use the unwrapped postId instead of params.id
       const response = await fetch(`/api/admin/blog/${postId}`, {
@@ -287,22 +305,22 @@ export default function EditBlogPostPage({ params }: BlogPostParams) {
           ...formData,
           tags: processedTags,
         }),
-      })
+      });
 
       if (!response.ok) {
-        const errorData = await response.json()
-        throw new Error(errorData.error || "Failed to update blog post")
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to update blog post");
       }
 
       // Redirect to blog management page
-      router.push("/admin/dashboard/blog")
+      router.push("/admin/dashboard/blog");
     } catch (err: any) {
-      console.error("Error updating blog post:", err)
-      setError(err.message || "Failed to update blog post")
+      console.error("Error updating blog post:", err);
+      setError(err.message || "Failed to update blog post");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const modules = {
     toolbar: [
@@ -316,7 +334,7 @@ export default function EditBlogPostPage({ params }: BlogPostParams) {
       [{ color: [] }],
       [{ background: [] }],
     ],
-  }
+  };
 
   if (fetchLoading) {
     return (
@@ -326,14 +344,17 @@ export default function EditBlogPostPage({ params }: BlogPostParams) {
           <p className="mt-4 text-gray-600">Loading blog post...</p>
         </div>
       </div>
-    )
+    );
   }
 
   return (
     <div className="p-6">
       <div className="flex justify-between items-center mb-6">
         <div className="flex items-center gap-2">
-          <Link href="/admin/dashboard/blog" className="text-gray-500 hover:text-gray-700 transition-colors">
+          <Link
+            href="/admin/dashboard/blog"
+            className="text-gray-500 hover:text-gray-700 transition-colors"
+          >
             <ArrowLeft size={20} />
           </Link>
           <h1 className="text-2xl font-bold">Edit Blog Post</h1>
@@ -344,9 +365,17 @@ export default function EditBlogPostPage({ params }: BlogPostParams) {
             type="button"
             variant="outline"
             onClick={handleToggleFeatured}
-            className={formData.featured ? "bg-yellow-50 text-yellow-700 border-yellow-200" : ""}
+            className={
+              formData.featured
+                ? "bg-yellow-50 text-yellow-700 border-yellow-200"
+                : ""
+            }
           >
-            {formData.featured ? <Star className="mr-2 h-4 w-4" /> : <StarOff className="mr-2 h-4 w-4" />}
+            {formData.featured ? (
+              <Star className="mr-2 h-4 w-4" />
+            ) : (
+              <StarOff className="mr-2 h-4 w-4" />
+            )}
             {formData.featured ? "Featured" : "Not Featured"}
           </Button>
 
@@ -354,9 +383,17 @@ export default function EditBlogPostPage({ params }: BlogPostParams) {
             type="button"
             variant="outline"
             onClick={handleTogglePublished}
-            className={formData.isPublished ? "bg-green-50 text-green-700 border-green-200" : ""}
+            className={
+              formData.isPublished
+                ? "bg-green-50 text-green-700 border-green-200"
+                : ""
+            }
           >
-            {formData.isPublished ? <Eye className="mr-2 h-4 w-4" /> : <EyeOff className="mr-2 h-4 w-4" />}
+            {formData.isPublished ? (
+              <Eye className="mr-2 h-4 w-4" />
+            ) : (
+              <EyeOff className="mr-2 h-4 w-4" />
+            )}
             {formData.isPublished ? "Published" : "Draft"}
           </Button>
         </div>
@@ -378,7 +415,10 @@ export default function EditBlogPostPage({ params }: BlogPostParams) {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="title"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Title <span className="text-red-500">*</span>
                   </label>
                   <Input
@@ -392,7 +432,10 @@ export default function EditBlogPostPage({ params }: BlogPostParams) {
                 </div>
 
                 <div>
-                  <label htmlFor="slug" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="slug"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Slug <span className="text-red-500">*</span>
                   </label>
                   <Input
@@ -404,12 +447,16 @@ export default function EditBlogPostPage({ params }: BlogPostParams) {
                     required
                   />
                   <p className="mt-1 text-sm text-gray-500">
-                    URL-friendly version of the title. Auto-generated but can be edited.
+                    URL-friendly version of the title. Auto-generated but can be
+                    edited.
                   </p>
                 </div>
 
                 <div>
-                  <label htmlFor="excerpt" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="excerpt"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Excerpt <span className="text-red-500">*</span>
                   </label>
                   <Textarea
@@ -424,10 +471,16 @@ export default function EditBlogPostPage({ params }: BlogPostParams) {
                 </div>
 
                 <div>
-                  <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="content"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Content <span className="text-red-500">*</span>
                   </label>
-                  <RichTextEditor value={formData.content} onChange={handleContentChange} />
+                  <RichTextEditor
+                    value={formData.content}
+                    onChange={handleContentChange}
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -441,7 +494,10 @@ export default function EditBlogPostPage({ params }: BlogPostParams) {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="category"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Category <span className="text-red-500">*</span>
                   </label>
                   <select
@@ -473,7 +529,10 @@ export default function EditBlogPostPage({ params }: BlogPostParams) {
                 </div>
 
                 <div>
-                  <label htmlFor="tags" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="tags"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Tags
                   </label>
                   <Input
@@ -483,11 +542,16 @@ export default function EditBlogPostPage({ params }: BlogPostParams) {
                     onChange={handleInputChange}
                     placeholder="tag1, tag2, tag3"
                   />
-                  <p className="mt-1 text-sm text-gray-500">Comma-separated list of tags</p>
+                  <p className="mt-1 text-sm text-gray-500">
+                    Comma-separated list of tags
+                  </p>
                 </div>
 
                 <div>
-                  <label htmlFor="readingTime" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="readingTime"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Reading Time
                   </label>
                   <Input
@@ -500,7 +564,9 @@ export default function EditBlogPostPage({ params }: BlogPostParams) {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Author Information</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Author Information
+                  </label>
                   <div className="space-y-3">
                     <Input
                       name="author.name"
@@ -566,7 +632,9 @@ export default function EditBlogPostPage({ params }: BlogPostParams) {
                           </label>
                           <p className="pl-1">or drag and drop</p>
                         </div>
-                        <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                        <p className="text-xs text-gray-500">
+                          PNG, JPG, GIF up to 10MB
+                        </p>
                         <div className="flex justify-center">
                           <Upload className="h-10 w-10 text-gray-400" />
                         </div>
@@ -576,7 +644,9 @@ export default function EditBlogPostPage({ params }: BlogPostParams) {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Detail Image (Optional)</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Detail Image (Optional)
+                  </label>
                   <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg">
                     {detailImagePreview ? (
                       <div className="relative w-full">
@@ -615,7 +685,9 @@ export default function EditBlogPostPage({ params }: BlogPostParams) {
                           </label>
                           <p className="pl-1">or drag and drop</p>
                         </div>
-                        <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                        <p className="text-xs text-gray-500">
+                          PNG, JPG, GIF up to 10MB
+                        </p>
                         <div className="flex justify-center">
                           <Upload className="h-10 w-10 text-gray-400" />
                         </div>
@@ -642,5 +714,5 @@ export default function EditBlogPostPage({ params }: BlogPostParams) {
         </div>
       </form>
     </div>
-  )
+  );
 }
