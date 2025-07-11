@@ -80,18 +80,20 @@ export function ContactInfo() {
                     <p className="text-gray-600 mb-2">
                       For quotes, projects, and information
                     </p>
-                    <Link
-                      href="mailto:brightensolutions@gmail.com"
-                      className="text-[#F66526] font-medium hover:underline"
-                    >
-                      brightensolutions@gmail.com,
-                    </Link>
-                    <Link
-                      href="mailto:sales@brightensolutions.com"
-                      className="text-[#F66526] font-medium hover:underline"
-                    >
-                      sales@brightensolutions.com
-                    </Link>
+                    <div className="flex flex-col">
+                      <Link
+                        href="mailto:brightensolutions@gmail.com"
+                        className="text-[#F66526] font-medium hover:underline"
+                      >
+                        brightensolutions@gmail.com
+                      </Link>
+                      <Link
+                        href="mailto:sales@brightensolutions.com"
+                        className="text-[#F66526] font-medium hover:underline"
+                      >
+                        sales@brightensolutions.com
+                      </Link>
+                    </div>
                   </div>
                 </div>
 
