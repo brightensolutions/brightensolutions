@@ -60,17 +60,61 @@ export function Footer() {
 
   // Global presence locations
   const globalLocations = [
-  { name: "Dubai", flag: "🇦🇪" },
-  { name: "Canada", flag: "🇨🇦" },
-  { name: "Germany", flag: "🇩🇪" },
-  { name: "USA", flag: "🇺🇸" },
-  { name: "UAE", flag: "🇦🇪" },
-  { name: "Oman", flag: "🇴🇲" },
-  { name: "Qatar", flag: "🇶🇦" },
-  { name: "Saudi Arabia", flag: "🇸🇦" },
-  { name: "Kuwait", flag: "🇰🇼" },
-  { name: "Bahrain", flag: "🇧🇭" },
-  { name: "Iran", flag: "🇮🇷" },
+  {
+    name: "Dubai",
+    flag: "🇦🇪",
+    link: "/web-development-company-in-dubai",
+  },
+  {
+    name: "Canada",
+    flag: "🇨🇦",
+    link: "/web-development-company-in-canada",
+  },
+  {
+    name: "Germany",
+    flag: "🇩🇪",
+    link: "/web-development-company-in-germany",
+  },
+  {
+    name: "USA",
+    flag: "🇺🇸",
+    link: "/web-development-company-in-usa",
+  },
+  {
+    name: "UAE",
+    flag: "🇦🇪",
+    link: "/web-development-company-in-uae",
+  },
+  {
+    name: "Oman",
+    flag: "🇴🇲",
+    link: "/web-development-company-in-oman",
+  },
+  {
+    name: "Qatar",
+    flag: "🇶🇦",
+    link: "/web-development-company-in-qatar",
+  },
+  {
+    name: "Saudi Arabia",
+    flag: "🇸🇦",
+    link: "/web-development-company-in-saudi-arabia",
+  },
+  {
+    name: "Kuwait",
+    flag: "🇰🇼",
+    link: "/web-development-company-in-kuwait",
+  },
+  {
+    name: "Bahrain",
+    flag: "🇧🇭",
+    link: "/web-development-company-in-bahrain",
+  },
+  {
+    name: "Iran",
+    flag: "🇮🇷",
+    link: "/web-development-company-in-iran",
+  },
 ];
 
   return (
@@ -248,29 +292,33 @@ export function Footer() {
               </p>
 
               <div className="grid grid-cols-2 gap-3">
-                {globalLocations.map((location, index) => (
-                  <motion.div
-                    key={location.name}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={
-                      isInView
-                        ? { opacity: 1, scale: 1 }
-                        : { opacity: 0, scale: 0.8 }
-                    }
-                    transition={{ duration: 0.3, delay: 0.4 + index * 0.1 }}
-                    className="bg-brightencolor-brightentwo rounded-lg p-3 border border-brightencolor-brightenone/20  transition-colors"
-                  >
-                    <div className="flex items-center  gap-2">
-                      <span className=" bg-white h-7 rounded-full text-black flex items-center justify-center w-7">
-                        {location.flag}
-                      </span>
-                      <span className="font-bold text-lg text-black">
-                        {location.name}
-                      </span>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+  {globalLocations.map((location, index) => (
+    <motion.div
+      key={location.name}
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={
+        isInView
+          ? { opacity: 1, scale: 1 }
+          : { opacity: 0, scale: 0.8 }
+      }
+      transition={{ duration: 0.3, delay: 0.4 + index * 0.1 }}
+    >
+      <Link href={location.link}>
+        <div className="bg-brightencolor-brightentwo rounded-lg p-3 border border-brightencolor-brightenone/20 hover:bg-white hover:shadow-lg transition-all duration-300 cursor-pointer">
+          <div className="flex items-center gap-2">
+            <span className="bg-white h-7 rounded-full text-black flex items-center justify-center w-7">
+              {location.flag}
+            </span>
+
+            <span className="font-bold text-lg text-black">
+              {location.name}
+            </span>
+          </div>
+        </div>
+      </Link>
+    </motion.div>
+  ))}
+</div>
             </div>
           </motion.div>
         </div>

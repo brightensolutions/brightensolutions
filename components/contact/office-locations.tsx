@@ -24,7 +24,65 @@ export function OfficeLocations() {
       team: "15+ Digital Experts",
       specialties: ["Web Development", "App Development", "Digital Marketing", "E-Visiting Cards"],
     },
+
   }
+  const globalLocations = [
+  {
+    name: "Dubai",
+    flag: "🇦🇪",
+    link: "/web-development-company-in-dubai",
+  },
+  {
+    name: "Canada",
+    flag: "🇨🇦",
+    link: "/web-development-company-in-canada",
+  },
+  {
+    name: "Germany",
+    flag: "🇩🇪",
+    link: "/web-development-company-in-germany",
+  },
+  {
+    name: "USA",
+    flag: "🇺🇸",
+    link: "/web-development-company-in-usa",
+  },
+  {
+    name: "UAE",
+    flag: "🇦🇪",
+    link: "/web-development-company-in-uae",
+  },
+  {
+    name: "Oman",
+    flag: "🇴🇲",
+    link: "/web-development-company-in-oman",
+  },
+  {
+    name: "Qatar",
+    flag: "🇶🇦",
+    link: "/web-development-company-in-qatar",
+  },
+  {
+    name: "Saudi Arabia",
+    flag: "🇸🇦",
+    link: "/web-development-company-in-saudi-arabia",
+  },
+  {
+    name: "Kuwait",
+    flag: "🇰🇼",
+    link: "/web-development-company-in-kuwait",
+  },
+  {
+    name: "Bahrain",
+    flag: "🇧🇭",
+    link: "/web-development-company-in-bahrain",
+  },
+  {
+    name: "Iran",
+    flag: "🇮🇷",
+    link: "/web-development-company-in-iran",
+  },
+];
 
   const activeOffice = locations[activeLocation as keyof typeof locations]
 
@@ -144,6 +202,52 @@ export function OfficeLocations() {
             </div>
           </div>
         </motion.div>
+        {/* Global Presence Countries */}
+<div className="mt-20">
+  <div className="text-center mb-12">
+    <h2 className="text-4xl font-bold text-gray-900 mb-4">
+      Our Global Presence
+    </h2>
+
+    <p className="text-gray-600 max-w-3xl mx-auto">
+      Brighten Solutions proudly serves clients across multiple countries with
+      world-class web development, app development, and digital marketing
+      solutions.
+    </p>
+  </div>
+
+  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+    {globalLocations.map((location, index) => (
+      <motion.div
+        key={location.name}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4, delay: index * 0.05 }}
+      >
+        <Link href={location.link}>
+          <div className="group bg-white border border-gray-200 rounded-2xl p-5 hover:border-[#F66526] hover:shadow-xl transition-all duration-300 cursor-pointer h-full">
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 rounded-full bg-gradient-to-r from-[#F66526] to-[#F2502C] flex items-center justify-center text-2xl shadow-md group-hover:scale-110 transition-transform duration-300">
+                {location.flag}
+              </div>
+
+              <div>
+                <h3 className="font-bold text-lg text-gray-900 group-hover:text-[#F66526] transition-colors">
+                  {location.name}
+                </h3>
+
+                <p className="text-sm text-gray-500">
+                  Explore Services
+                </p>
+              </div>
+            </div>
+          </div>
+        </Link>
+      </motion.div>
+    ))}
+  </div>
+</div>
 
         {/* Google Maps Embed */}
         <div className="mt-16 relative rounded-2xl overflow-hidden shadow-lg h-[450px]">
