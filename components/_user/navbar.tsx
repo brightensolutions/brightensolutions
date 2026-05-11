@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { Menu, X, ChevronRight, Instagram, Twitter, Facebook, Linkedin } from "lucide-react"
+import { Menu, X, ChevronRight, Instagram, Twitter, Facebook, Linkedin, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
@@ -103,11 +103,12 @@ export function Navbar() {
         
 
         <div className="flex items-center gap-4">
-          <div className="md:static md:transform-none md:ml-auto">
+         <div className="md:static md:transform-none md:ml-auto">
             <Link
-              href="tel:+91 7265993989"
-              className="flex items-center gap-2 rounded-full border border-white/50 bg-black/30 px-6 py-2 font-medium text-white backdrop-blur-sm transition-all duration-300 hover:border-white hover:bg-black/50"
+              href="tel:+917265993989"
+              className="flex items-center gap-2 rounded-full bg-brightencolor-brightenone px-6 py-2 font-medium text-white transition-all duration-300 hover:opacity-90"
             >
+              <Phone className="h-4 w-4" />
               +91 7265993989
             </Link>
           </div>

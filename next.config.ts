@@ -28,6 +28,7 @@ const nextConfig = {
   experimental: {
     serverActions: true,
   },
+   allowedDevOrigins: ["192.168.1.3"],
 }
 
 module.exports = nextConfig

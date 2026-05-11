@@ -60,11 +60,18 @@ export function Footer() {
 
   // Global presence locations
   const globalLocations = [
-    { name: "Dubai", flag: "🇦🇪" },
-    { name: "Canada", flag: "🇨🇦" },
-    { name: "Germany", flag: "🇩🇪" },
-    { name: "USA", flag: "🇺🇸" },
-  ];
+  { name: "Dubai", flag: "🇦🇪" },
+  { name: "Canada", flag: "🇨🇦" },
+  { name: "Germany", flag: "🇩🇪" },
+  { name: "USA", flag: "🇺🇸" },
+  { name: "UAE", flag: "🇦🇪" },
+  { name: "Oman", flag: "🇴🇲" },
+  { name: "Qatar", flag: "🇶🇦" },
+  { name: "Saudi Arabia", flag: "🇸🇦" },
+  { name: "Kuwait", flag: "🇰🇼" },
+  { name: "Bahrain", flag: "🇧🇭" },
+  { name: "Iran", flag: "🇮🇷" },
+];
 
   return (
     <footer
@@ -106,8 +113,8 @@ export function Footer() {
                 Surat, Gujarat
               </span>
               , with a global client base spanning Dubai, Canada, Germany, USA
-              and beyond. Award-winning Software Development & Web Development
-              with 8 years of experience delivering exceptional Customized
+              and beyond. Award-winning ERP Solutions, Software Development & Web Development
+              with 10 years of experience delivering exceptional Customized
               Software, websites, apps, and digital marketing solutions.
             </p>
 
