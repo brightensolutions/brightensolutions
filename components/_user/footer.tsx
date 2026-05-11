@@ -345,7 +345,7 @@ export function Footer() {
               {[
                 {
                   icon: <Instagram className="h-5 w-5" />,
-                  href: "https://www.instagram.com/brightensolutions16/?utm_medium=copy_link",
+                  href: "https://www.instagram.com/brightensolutions16/",
                   label: "Instagram",
                 },
                 {
@@ -356,7 +356,7 @@ export function Footer() {
 
                 {
                   icon: <Linkedin className="h-5 w-5" />,
-                  href: "www.linkedin.com/in/brighten-solutions-3a561227a",
+                  href: "https://www.linkedin.com/in/brighten-solutions-3a561227a",
                   label: "LinkedIn",
                 },
               ].map((social, index) => (
