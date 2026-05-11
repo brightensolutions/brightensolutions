@@ -717,8 +717,9 @@ export default function ClientInfoDetailPage({ params }: { params: { id: string 
                               <dt className="text-xs font-medium text-gray-500">Password</dt>
                               <dd className="text-xs text-gray-900 col-span-2 flex items-center">
                                 <span>
-                                  {showPassword[`email_${index}`] ? account.password : "••••••••••••"}? account.password
-                                  : "••••••••••••"}
+                                  {showPassword[`email_${index}`]
+                                    ? account.password
+                                    : "••••••••••••"}
                                 </span>
                                 <Button
                                   variant="ghost"
