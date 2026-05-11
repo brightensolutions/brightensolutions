@@ -41,6 +41,8 @@ export function Footer() {
     { name: "Portfolio", href: "/portfolio" },
     { name: "Our Services", href: "/services" },
     { name: "Contact Us", href: "/contact" },
+     { name: "Terms & Conditions", href: "/terms-and-conditions" },
+     { name: "Privacy Policy", href: "/privacy-policy" },
   ];
 
   const serviceLinks = [

@@ -188,7 +188,7 @@ export function BlogList() {
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredPosts.map((post, index) => (
-                <BlogCard key={post._id} post={post} featured={index === 0 && pagination.page === 1} />
+                <BlogCard key={post._id} post={post as any} />
               ))}
             </div>
 
