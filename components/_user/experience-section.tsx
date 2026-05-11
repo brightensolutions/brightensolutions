@@ -176,7 +176,7 @@ export function ExperienceSection() {
                 1. Proven Experience
               </span>
               <h2 className="mb-6 text-4xl font-bold text-zinc-900 leading-tight md:text-5xl lg:text-6xl">
-                <span className="text-brightencolor-brightenone font-extrabold">{yearsOfExperience} years</span>{" "}
+                <span className="text-brightencolor-brightenone font-extrabold">10 years</span>{" "}
                 {experienceData.title}
               </h2>
               <p className="mb-8 text-xl text-zinc-800 font-roboto-slab">{experienceData.description}</p>
@@ -222,7 +222,7 @@ export function ExperienceSection() {
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="flex h-24 w-24 flex-col items-center justify-center rounded-full bg-brightencolor-brightenone text-white">
                       <span className="text-xs font-semibold">CELEBRATING</span>
-                      <span className="text-2xl font-bold">{yearsOfExperience}</span>
+                      <span className="text-2xl font-bold">10</span>
                       <span className="text-xs font-semibold">YEARS</span>
                     </div>
                   </div>

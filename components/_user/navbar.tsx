@@ -47,7 +47,7 @@ const menuItems = [
 const socialIcons = [
   { icon: Instagram, href: "https://www.instagram.com/brightensolutions16/?utm_medium=copy_link" },
   { icon: Facebook, href: "https://www.facebook.com/people/Brighten-Solutions/100066476621484/" },
-  { icon: Linkedin, href: "www.linkedin.com/in/brighten-solutions-3a561227a" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/brighten-solutions-3a561227a" },
 ]
 
 export function Navbar() {
@@ -100,8 +100,17 @@ export function Navbar() {
             />
           </div>
         </Link>
+        
 
         <div className="flex items-center gap-4">
+          <div className="md:static md:transform-none md:ml-auto">
+            <Link
+              href="tel:+91 7265993989"
+              className="flex items-center gap-2 rounded-full border border-white/50 bg-black/30 px-6 py-2 font-medium text-white backdrop-blur-sm transition-all duration-300 hover:border-white hover:bg-black/50"
+            >
+              +91 7265993989
+            </Link>
+          </div>
           <div className="md:static md:transform-none md:ml-auto">
             <Link
               href="/portfolio"
@@ -302,7 +311,7 @@ export function Navbar() {
                           <span className="text-[#F66526]">✉️</span>
                         </div>
                         <a href="mailto:brightensolutions@gmail.com" className="text-black hover:text-[#F66526] transition-colors">
-                        brightensolutions@gmail.com
+                        brightensolutions@gmail.com, sales@brightensolutions.com
                         </a>
                       </div>
                     </motion.div>
