@@ -249,33 +249,56 @@ export function HeroSection() {
                   </Link>
                 </Button>
                 <div className="flex gap-3 text-2xl md:text-3xl">
-                  {sortedSocialLinks.map((social, index) => (
-                    <motion.div
-                      key={`social-${index}-${social.id || social.platform}`}
-                      initial={{ opacity: 0, scale: 0 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 260,
-                        damping: 20,
-                        delay: 1.3 + index * 0.1,
-                      }}
-                      whileHover={{
-                        scale: 1.1,
-                        rotate: 5,
-                        transition: { duration: 0.2 },
-                      }}
-                    >
-                      <Link
-                        href={social.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-white p-2 shadow-lg rounded-full block"
-                      >
-                        {getSocialIcon(social.platform)}
-                      </Link>
-                    </motion.div>
-                  ))}
+                 <div className="flex gap-3 text-2xl md:text-3xl">
+  {[
+    {
+      platform: "Instagram",
+      url: "https://www.instagram.com/brightensolutions16/?utm_medium=copy_link",
+      icon: <FaInstagram className="text-[#fe2a62]" />,
+    },
+    {
+      platform: "Facebook",
+      url: "https://www.facebook.com/people/Brighten-Solutions/100066476621484/",
+      icon: <FaFacebook className="text-[#2377ff]" />,
+    },
+    {
+      platform: "LinkedIn",
+      url: "https://www.linkedin.com/in/brighten-solutions-3a561227a",
+      icon: <FaLinkedin className="text-[#0077b5]" />,
+    },
+    {
+      platform: "WhatsApp",
+      url: "https://api.whatsapp.com/send/?phone=918511463297",
+      icon: <FaSquareWhatsapp className="text-[#5bdc89]" />,
+    },
+  ].map((social, index) => (
+    <motion.div
+      key={social.platform}
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{
+        type: "spring",
+        stiffness: 260,
+        damping: 20,
+        delay: 1.3 + index * 0.1,
+      }}
+      whileHover={{
+        scale: 1.1,
+        rotate: 5,
+        transition: { duration: 0.2 },
+      }}
+    >
+      <Link
+        href={social.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="bg-white p-2 shadow-lg rounded-full block"
+      >
+        {social.icon}
+      </Link>
+    </motion.div>
+  ))}
+</div>
                 </div>
               </motion.div>
             </div>
