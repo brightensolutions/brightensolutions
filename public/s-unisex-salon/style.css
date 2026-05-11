@@ -1,0 +1,460 @@
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --gold: #d4af37;
+  --gold-light: #f2d675;
+  --gold-dark: #aa8c2c;
+  --black: #000000;
+  --black-light: #1a1a1a;
+  --black-dark: #0a0a0a;
+  --white: #ffffff;
+  --gray: #cccccc;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: url("6184940.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: var(--gold);
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Card Container */
+.card-container {
+  max-width: 500px;
+  margin: 20px auto;
+  background-color: var(--black);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--gold-dark);
+}
+
+/* Header */
+.header {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--black-dark);
+  border-bottom: 1px solid var(--gold-dark);
+}
+
+.logo {
+  width: 80px;
+  height: auto;
+}
+
+/* Profile Section */
+.profile-banner {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  border-bottom: 2px solid var(--gold);
+}
+
+.banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.8);
+}
+
+/* Logo with animated border - Fixed version */
+.profile-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden; /* This ensures the logo stays within the circle */
+  z-index: 2;
+}
+
+/* Animated border container */
+.profile-logo::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  background: linear-gradient(
+    45deg,
+    var(--gold),
+    var(--gold-light),
+    var(--gold-dark),
+    var(--gold)
+  );
+  background-size: 300% 300%;
+  border-radius: 50%;
+  z-index: -1;
+  animation: borderGradient 3s ease infinite;
+}
+
+/* Inner container for logo background */
+.profile-logo::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  background-color: var(--black);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+@keyframes borderGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.profile-logo img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%; /* Reduced size to ensure it fits within the circle */
+  height: auto;
+  z-index: 1; /* Between the background and the border */
+  object-fit: contain; /* Ensures the logo maintains its aspect ratio */
+}
+
+.profile-info {
+  padding: 30px 20px 20px;
+  text-align: center;
+  background-color: var(--black);
+}
+
+/* Name Animation */
+.profile-info h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: var(--gold);
+  letter-spacing: 2px;
+  position: relative;
+  display: inline-block;
+  animation: shimmer 3s infinite;
+  background: linear-gradient(
+    to right,
+    var(--gold) 0%,
+    var(--gold-light) 30%,
+    var(--gold) 70%,
+    var(--gold) 100%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.profile-info h2 {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--gold-light);
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+  opacity: 0;
+  animation: fadeIn 1s forwards 0.5s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Contact Buttons */
+.contact-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.contact-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: var(--black-light);
+  color: var(--gold);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--gold);
+}
+
+.contact-btn:hover {
+  transform: translateY(-3px);
+  background-color: var(--gold);
+  color: var(--black);
+  box-shadow: 0 6px 15px rgba(212, 175, 55, 0.3);
+}
+
+/* Contact Details */
+.contact-details {
+  margin-bottom: 25px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  padding: 0 10px;
+  text-align: left;
+}
+
+.contact-item i {
+  color: var(--gold);
+  font-size: 18px;
+  margin-right: 15px;
+  margin-top: 3px;
+}
+
+.contact-text {
+  flex: 1;
+}
+
+.contact-text a {
+  display: block;
+  color: var(--white);
+  transition: color 0.3s ease;
+}
+
+.contact-text a:hover {
+  color: var(--gold);
+}
+
+/* Action Buttons */
+.action-buttons {
+  margin-bottom: 25px;
+}
+
+.primary-btn {
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: var(--black-light);
+  color: var(--gold);
+  border: 2px solid var(--gold);
+  border-radius: 30px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.primary-btn i {
+  margin-right: 8px;
+}
+
+.primary-btn:hover {
+  transform: translateY(-3px);
+  background-color: var(--gold);
+  color: var(--black);
+  box-shadow: 0 6px 15px rgba(212, 175, 55, 0.3);
+}
+
+/* Social Links */
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.social-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+  background-color: var(--gold);
+  color: var(--black);
+  transform: translateY(-3px);
+}
+
+/* Services Section */
+.services-section {
+  padding: 30px 20px;
+  background-color: var(--black-light);
+  border-top: 1px solid var(--gold-dark);
+}
+
+.section-title {
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: var(--gold);
+  position: relative;
+  padding-bottom: 15px;
+  letter-spacing: 2px;
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background-color: var(--gold);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.service-card {
+  background-color: var(--black);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  border: 1px solid var(--gold-dark);
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.2);
+}
+
+.service-card h3 {
+  padding: 15px 10px;
+  font-size: 16px;
+  text-align: center;
+  font-weight: 600;
+  color: var(--gold);
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--gold-dark);
+}
+
+.service-img {
+  height: 150px;
+  overflow: hidden;
+}
+
+.service-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  filter: brightness(0.9);
+}
+
+.service-card:hover .service-img img {
+  transform: scale(1.05);
+}
+
+.enquiry-btn {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  background-color: var(--black-light);
+  color: var(--gold);
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border-top: 1px solid var(--gold-dark);
+}
+
+.enquiry-btn:hover {
+  background-color: var(--gold);
+  color: var(--black);
+}
+
+/* Footer */
+.card-footer {
+  padding: 15px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--gold-light);
+  background-color: var(--black-dark);
+  border-top: 1px solid var(--gold-dark);
+}
+
+/* Media Queries */
+@media (max-width: 500px) {
+  .card-container {
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-info h1 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 380px) {
+  .contact-buttons {
+    gap: 10px;
+  }
+
+  .contact-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .primary-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
