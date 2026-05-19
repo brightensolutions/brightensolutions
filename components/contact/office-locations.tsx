@@ -83,6 +83,16 @@ export function OfficeLocations() {
     flag: "https://flagcdn.com/ir.svg",
     link: "/web-development-company-in-iran",
   },
+  {
+    name: "Iraq",
+    flag: "https://flagcdn.com/iq.svg",
+    link: "/web-development-company-in-iraq",
+  },
+  {
+    name: "Brazil",
+    flag: "https://flagcdn.com/br.svg",
+    link: "/web-development-company-in-brazil",
+  },
 ];
 
   const activeOffice = locations[activeLocation as keyof typeof locations]
