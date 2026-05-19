@@ -46,12 +46,16 @@ export function Footer() {
   ];
 
   const serviceLinks = [
-    { name: "Website Development", href: "/services/website" },
-    { name: "Mobile App Development", href: "/services/mobile" },
+    { name: "Website Development", href: "/services/website-development-surat" },
+    { name: "Mobile App Development", href: "/services/application-development-services-in-surat" },
     { name: "E-Commerce Solutions", href: "/services/ecommerce" },
-    { name: "UI/UX Design", href: "/services/design" },
+    { name: "Custom Software Development", href: "/services/custom-software-development" },
+    { name: "ERP Solutions", href: "/services/erp-solutions" },
+    { name: "UI/UX Design", href: "/services/ui/ux-design-services-in-surat" },
+    { name: "Graphic & Printing", href: "/services/graphic-and-printing-solutions-in-surat" },
     { name: "Digital Marketing", href: "/services/marketing" },
-    { name: "SEO Optimization", href: "/services/seo" },
+    { name: "SEO Optimization", href: "/services/seo-services-in-surat" },
+    
   ];
 
   const resourceLinks = [
