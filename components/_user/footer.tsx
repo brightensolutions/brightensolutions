@@ -117,6 +117,16 @@ export function Footer() {
     flag: "https://flagcdn.com/ir.svg",
     link: "/web-development-company-in-iran",
   },
+   {
+    name: "Brazil",
+    flag: "https://flagcdn.com/br.svg",
+    link: "/web-development-company-in-brazil",
+  },
+   {
+    name: "Iraq",
+    flag: "https://flagcdn.com/iq.svg",
+    link: "/web-development-company-in-iraq",
+  },
 ];
 
   return (
