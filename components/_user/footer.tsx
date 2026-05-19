@@ -158,7 +158,7 @@ export function Footer() {
                 Brighten Solutions is the best Web Solutions provider company in
                 Surat, Gujarat
               </span>
-              , with a global client base spanning Dubai, Canada, Germany, USA, UAE, Oman, Qatar, Saudi Arabia, Kuwait, Bahrain, Iran,
+              , with a global client base spanning Dubai, Canada, Germany, USA, UAE, Oman, Qatar, Saudi Arabia, Kuwait, Bahrain, Iran, Iraq, Brazil
               and beyond. Award-winning ERP Solutions, Software Development & Web Development
               with 10 years of experience delivering exceptional Customized
               Software, websites, apps, and digital marketing solutions.
@@ -309,16 +309,16 @@ export function Footer() {
         <div className="bg-brightencolor-brightentwo rounded-lg p-3 border border-brightencolor-brightenone/20 hover:bg-white hover:shadow-lg transition-all duration-300 cursor-pointer">
           <div className="flex items-center gap-2">
             <span
-  className="bg-white h-7 rounded-full text-black flex items-center justify-center w-7 not-italic"
-  style={{
-    fontFamily:
-      '"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji"',
-    fontSize: "18px",
-    lineHeight: "1",
-  }}
->
-  {location.flag}
-</span>
+                className="bg-white h-7 rounded-full text-black flex items-center justify-center w-7 not-italic"
+                style={{
+                  fontFamily:
+                    '"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji"',
+                  fontSize: "18px",
+                  lineHeight: "1",
+                }}
+              >
+                {location.flag}
+              </span>
 
             <span className="font-bold text-lg text-black">
               {location.name}
