@@ -26,60 +26,61 @@ export function OfficeLocations() {
     },
 
   }
+  // Global presence locations
   const globalLocations = [
   {
     name: "Dubai",
-    flag: "🇦🇪",
+    flag: "https://flagcdn.com/ae.svg",
     link: "/web-development-company-in-dubai",
   },
   {
     name: "Canada",
-    flag: "🇨🇦",
+    flag: "https://flagcdn.com/ca.svg",
     link: "/web-development-company-in-canada",
   },
   {
     name: "Germany",
-    flag: "🇩🇪",
+    flag: "https://flagcdn.com/de.svg",
     link: "/web-development-company-in-germany",
   },
   {
     name: "USA",
-    flag: "🇺🇸",
+    flag: "https://flagcdn.com/us.svg",
     link: "/web-development-company-in-usa",
   },
   {
     name: "UAE",
-    flag: "🇦🇪",
+    flag: "https://flagcdn.com/ae.svg",
     link: "/web-development-company-in-uae",
   },
   {
     name: "Oman",
-    flag: "🇴🇲",
+    flag: "https://flagcdn.com/om.svg",
     link: "/web-development-company-in-oman",
   },
   {
     name: "Qatar",
-    flag: "🇶🇦",
+    flag: "https://flagcdn.com/qa.svg",
     link: "/web-development-company-in-qatar",
   },
   {
     name: "Saudi Arabia",
-    flag: "🇸🇦",
+    flag: "https://flagcdn.com/sa.svg",
     link: "/web-development-company-in-saudi-arabia",
   },
   {
     name: "Kuwait",
-    flag: "🇰🇼",
+    flag: "https://flagcdn.com/kw.svg",
     link: "/web-development-company-in-kuwait",
   },
   {
     name: "Bahrain",
-    flag: "🇧🇭",
+    flag: "https://flagcdn.com/bh.svg",
     link: "/web-development-company-in-bahrain",
   },
   {
     name: "Iran",
-    flag: "🇮🇷",
+    flag: "https://flagcdn.com/ir.svg",
     link: "/web-development-company-in-iran",
   },
 ];
@@ -228,9 +229,15 @@ export function OfficeLocations() {
         <Link href={location.link}>
           <div className="group bg-white border border-gray-200 rounded-2xl p-5 hover:border-[#F66526] hover:shadow-xl transition-all duration-300 cursor-pointer h-full">
             <div className="flex items-center gap-4">
-              <div className="w-14 h-14 rounded-full bg-gradient-to-r from-[#F66526] to-[#F2502C] flex items-center justify-center text-2xl shadow-md group-hover:scale-110 transition-transform duration-300">
-                {location.flag}
-              </div>
+             <div className="relative h-8 w-8 overflow-hidden rounded-full border border-gray-200 bg-white shadow-sm">
+               <Image
+                 src={location.flag}
+                 alt={location.name}
+                 fill
+                 className="object-cover"
+                 sizes="32px"
+               />
+             </div>
 
               <div>
                 <h3 className="font-bold text-lg text-gray-900 group-hover:text-[#F66526] transition-colors">
