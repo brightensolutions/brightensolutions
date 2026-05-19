@@ -309,10 +309,12 @@ export function Footer() {
         <div className="bg-brightencolor-brightentwo rounded-lg p-3 border border-brightencolor-brightenone/20 hover:bg-white hover:shadow-lg transition-all duration-300 cursor-pointer">
           <div className="flex items-center gap-2">
             <span
-  className="bg-white h-7 rounded-full text-black flex items-center justify-center w-7"
+  className="bg-white h-7 rounded-full text-black flex items-center justify-center w-7 not-italic"
   style={{
     fontFamily:
-      '"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif',
+      '"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji"',
+    fontSize: "18px",
+    lineHeight: "1",
   }}
 >
   {location.flag}
