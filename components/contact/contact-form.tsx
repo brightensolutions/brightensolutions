@@ -87,6 +87,8 @@ export function ContactForm() {
   const serviceOptions = [
     "Website Development",
     "Application Development",
+    "Custom Software",
+    "ERP Solutions",
     "E-Visiting Cards",
     "UI/UX Design",
     "SEO Services",
