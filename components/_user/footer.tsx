@@ -158,7 +158,7 @@ export function Footer() {
                 Brighten Solutions is the best Web Solutions provider company in
                 Surat, Gujarat
               </span>
-              , with a global client base spanning Dubai, Canada, Germany, USA
+              , with a global client base spanning Dubai, Canada, Germany, USA, UAE, Oman, Qatar, Saudi Arabia, Kuwait, Bahrain, Iran,
               and beyond. Award-winning ERP Solutions, Software Development & Web Development
               with 10 years of experience delivering exceptional Customized
               Software, websites, apps, and digital marketing solutions.
